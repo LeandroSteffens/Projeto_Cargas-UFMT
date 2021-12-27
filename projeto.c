@@ -2,22 +2,32 @@
 
 
 //Declarando as varáveis globais.
-int qnt_box, qnt_truck;
+int qnt_box, qnt_truck, c1, tamb, tamt;
+
+int mass_box[], limit_truck[];
 
 int scan_values();
 
-int choose_box
+int choose_box();
+
 
 int main(){
 
     printf("\n\t\tPROJETO TRANSPORTADORA\n\n\n\n");
-        for(int i = 0; i < 2000000000; i++)
+        for(int i = 0; i < 2; i++)
             printf("");
     system("cls");
 
     scan_values();
 
+    for(int i = 0; i <= tamt; i++)
+        printf("%i", limit_truck[i]);
+        system("pause");
+
     choose_box();
+
+    printf("\n%i\n", c1);
+
 
 return 0;
 }
@@ -55,6 +65,21 @@ int scan_values(){
 
 int choose_box(){
 
+int resto = 100, c1;
 
+    for(int i = 0; i <= tamt; i++){
+        //Testando uma caixa para o caminhão.
+        for(int j = 0; j <= tamb; j++)
+            if((mass_box[j] <= limit_truck[i]) && ((limit_truck[i] - mass_box[j]) < resto)){
+                resto = limit_truck[i] - mass_box[j];
+                c1 = j;
+                printf("%i %i %i", c1, limit_truck[i], mass_box[j]);
+            }
+            
+
+
+        //Testando duas caixas para o caminhão.
+
+    }
 
 }
