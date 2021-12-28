@@ -1,8 +1,11 @@
+
 #include <stdio.h>
 
 
 //Declarando as varáveis globais.
-int qnt_box, qnt_truck, c1, c2, tamb, tamt, resto[20];
+int qnt_box, qnt_truck, tamb, tamt, resto1=1000, box_resto1=0, resto2=1000, box_resto2[1];
+
+int i=0, j=0, k=0;
 
 int mass_box[], limit_truck[];
 
@@ -15,7 +18,7 @@ int zerarvetor();
 int main(){
 
     printf("\n\t\tPROJETO TRANSPORTADORA\n\n\n\n");
-        for(int i = 0; i < 2; i++)
+        for(i = 0; i < 2; i++)
             printf("");
     system("cls");
 
@@ -25,17 +28,15 @@ int main(){
 
     choose_box();
 
-    printf("\n%i %i\n", c1, c2);
+    printf("caminhao 1 - %i %i\t %i %i %i", resto1, box_resto1, resto2, box_resto2[0], box_resto2[1]);
 
 
 return 0;
 }
 
 int zerarvetor(){
-    for(int i=0; i<=20; i++)
-        resto[i]=1000;
-}
 
+}
 int scan_values(){
 
 
@@ -46,9 +47,12 @@ int scan_values(){
     mass_box[tamb];
     int j = 1;
 
-    for(int i = 0; i <= tamb; i++){
-        printf("\nDigite o peso da caixa %i: ", j++);
+    //mudei aqui para testar o scanf buff
+    printf("\nDigite o peso da caixa %i: ", j++);
             scanf("%i", &mass_box[i]);
+    for(i = 1; i <= tamb; i++){
+        printf("\nDigite o peso da caixa %i: ", j++);
+            scanf(" %i", &mass_box[i]);
     }
     system("cls");
 
@@ -60,32 +64,36 @@ int scan_values(){
     limit_truck[tamt];
     j = 1;
 
-    for(int i = 0; i <= tamt; i++){
+    for(i = 0; i <= tamt; i++){
         printf("\nDigite o limite de carga do caminhao %i: ", j++);
             scanf("%i", &limit_truck[i]);
     }
 }
 
 int choose_box(){
-    c1 = 100;
 
-    for(int i = 0; i <= tamt; i++){
-        //Testando uma caixa para o caminhão.
-        for(int j = 0; j <= tamb; j++){
+    for(i = 0; i <= tamt; i++){
+
+        //testando limite para 01 caixa por caminhao
+        for(j = 0; j <= tamb; j++){
             if(mass_box[j] <= limit_truck[i]){
-                resto[j] = limit_truck[i] - mass_box[j];
+                if(limit_truck[i] - mass_box[j] < resto1){
+                    resto1 = limit_truck[i] - mass_box[j];
+                    box_resto1 = j;
+        }
+            }
+                }
 
-                for(int k=0; k<=20; k++)
-                    if(resto[k] < c1){
-                        c1 = resto[k];
-                        c2 = k;
-                    }
+        //testando limite para 02 caixas por caminhao
+        for(j=0; i<=tamb; j++){
+            k = j+1;
+            for(k; k<=tamb; k++){
+                if((mass_box[j] + mass_box[k]) <= limit_truck[i] && (mass_box[j] + mass_box[k]) < resto2){
+                    resto2 = limit_truck - mass_box[j] + mass_box[k];
+                    box_resto2[0] = j;
+                    box_resto2[1] = k;
+                }
             }
         }
-
-        //Testando duas caixas para o caminhão.
-
-
     }
-
 }
