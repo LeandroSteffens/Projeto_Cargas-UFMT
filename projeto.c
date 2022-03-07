@@ -17,16 +17,14 @@ int zerarvetor();
 
 int main(){
 
-    printf("\n\t\tPROJETO TRANSPORTADORA\n\n\n\n");
-        for(i = 0; i < 2; i++)
-            printf("");
-    system("cls");
+
 
     zerarvetor();
 
     scan_values();
 
     choose_box();
+
 
 
 return 0;
@@ -39,28 +37,23 @@ int scan_values(){
 
 
     //Recebendo a quantidade e peso das caixas.
-    printf("Digite a quantidade de caixas: ");
         scanf("%i", &qnt_box);
     tamb = qnt_box - 1;
     mass_box[tamb];
     int j = 1;
 
     for(i = 0; i <= tamb; i++){
-        printf("\nDigite o peso da caixa %i: ", j++);
             scanf("%i", &mass_box[i]);
     }
-    system("cls");
 
 
     //Recebendo a quantidade e limite de carga dos caminhões.
-    printf("Digite a quantidade de caminhoes: ");
         scanf("%i", &qnt_truck);
     tamt = qnt_truck - 1;
     limit_truck[tamt];
     j = 1;
 
     for(i = 0; i <= tamt; i++){
-        printf("\nDigite o limite de carga do caminhao %i: ", j++);
             scanf("%i", &limit_truck[i]);
     }
 }
