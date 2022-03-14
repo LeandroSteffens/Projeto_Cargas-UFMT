@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 
-//Declarando as varáveis globais.
+//Declarando as varáveis.
 int qnt_box, qnt_truck, sizeb, sizet, rest1=1000, box_rest1=0, rest2=1000, box_rest2[1];
 
 int i=0, j=0, k=0;
@@ -33,7 +33,7 @@ return 0;
 int scan_values(){
 
 
-    //Recebendo a quantidade e peso das caixas.
+//Recebendo a quantidade e peso das caixas.
         printf("Digite a quantidade de caixas: ");
             scanf("%i", &qnt_box);
     sizeb = qnt_box - 1;
@@ -46,7 +46,7 @@ int scan_values(){
     }
 
 
-    //Recebendo a quantidade e limite de carga dos caminhões.
+//Recebendo a quantidade e limite de carga dos caminhões.
     printf("\nDigite a quantidade de caminhoes: ");
         scanf("%i", &qnt_truck);
     sizet = qnt_truck - 1;
@@ -59,12 +59,14 @@ int scan_values(){
     }
 }
 
+//Função que faz a escolha de caixas.
 int choose_box(){
 
     for(i = 0; i <= sizet; i++){
         rest1 = 1000;
         rest2 = 1000;
-        //Testando limite para 1 caixa por caminhao
+        
+//Testando limite para 1 caixa por caminhão.
         for(j = 0; j <= sizeb; j++){
             if(mass_box[j] <= limit_truck[i]){
                 if((limit_truck[i] - mass_box[j]) < rest1){
@@ -74,7 +76,7 @@ int choose_box(){
             }
                 }
 
-        //Testando limite para 2 caixas por caminhao
+//Testando limite para 2 caixas por caminhão.
         for(j=0; j<=sizeb; j++){
             k = j+1;
             for(k; k<=sizeb; k++){
@@ -86,7 +88,7 @@ int choose_box(){
             }
         }
 
-        //Testando o resultado
+//Printando o resultado
         if(rest1 > rest2){
             printf("caminhao %i - %i %i carga:%i\n", (i+1), (box_rest2[0]+1), (box_rest2[1]+1), (mass_box[box_rest2[0]]+mass_box[box_rest2[1]]));
             mass_box[box_rest2[0]] = 1000;
